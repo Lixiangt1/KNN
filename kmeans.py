@@ -7,9 +7,7 @@ def kmeans(data,k=3, epoches=500):
 
     for i in range(epoches):
         data_class = np.argmin(np.sum((data[:,None,:]-centre)**2, axis=2), axis=1)
-        new_centre=[]
-        for j in range(k):
-            new_centre.append(data[data_class == j, :].mean(axis=0))
+        new_centre=[data[data_class == j, :].mean(axis=0) for j in range(k)]
         new_centre=np.array(new_centre)
         if (new_centre == centre).all():
             break
